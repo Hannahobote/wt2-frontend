@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 //import { Bar } from "react-chartjs-2";
 //import { Chart as ChartJS } from "chart.js/auto";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList} from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, ReferenceLine} from 'recharts';
 
 function App() {
   const [animeRecs, setAnimeRecs] = useState([])
@@ -47,7 +47,8 @@ function App() {
 
   // compare avarage scorre????
   // compare avaregae anime lenth
-
+  console.log(animeRecs[0], animeRecs[animeRecs.length - 1])
+  const newData = [animeRecs[0], animeRecs[animeRecs.length - 1]]
   return (
     <div className="App">
       HELLLLLLO
@@ -71,6 +72,27 @@ function App() {
           <Bar dataKey="English name" fill="#8884d8" />
           <Bar dataKey="Score" fill="#82ca9d" />
 
+        </BarChart>
+
+        <BarChart
+          width={500}
+          height={300}
+          data={newData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="English name" />
+          <YAxis dataKey="Score" domain={[8.5,9.5]} />
+          <Tooltip />
+          <Legend />
+          <ReferenceLine y={0} stroke="#000" />
+          <Bar dataKey="English name" fill="#8884d8" />
+          <Bar dataKey="Score" fill="#82ca9d" />
         </BarChart>
 
     </div>
