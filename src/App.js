@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react';
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+//import { Bar } from "react-chartjs-2";
+//import { Chart as ChartJS } from "chart.js/auto";
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList} from 'recharts';
 
 function App() {
-  const [animeRecs, setAnimeRecs] = useState({})
+  const [animeRecs, setAnimeRecs] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+
   useEffect(() => {
     async function data() {
       const res = await fetch('https://wt2-backend.onrender.com')
         .then(res => res.json())
         .then(animeData => {
+          let tempData = []
+         animeData.map(anime =>{
+          tempData.push({'English name': Object.values(anime._source)[0], 'Score': anime._source.Score})
+         })
 
-          setAnimeRecs({
+         setAnimeRecs(tempData)
+         setLoading(false)
+          // structre data for chart
+          /*setAnimeRecs({
             lables: animeData.map(anime => anime._source.Score),
             datasets: [
               {
@@ -22,29 +33,46 @@ function App() {
             ]
           })
 
+          // load page
+          setLoading(false)*/
         })
     }
 
     data()
   }, [])
 
-  const fakeData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [
-      {
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-      },
-    ],
-  };
+  if (isLoading) return <p>Loading...</p>
+ // if (animeRecs) return <div> <Bar data={animeRecs} /> </div>
+  if (!animeRecs) return <p>No Animedata</p>
 
-  console.log(animeRecs)
+  // compare avarage scorre????
+  // compare avaregae anime lenth
+
   return (
     <div className="App">
       HELLLLLLO
-      <Bar data={fakeData} />
+     
+        <BarChart
+          width={1500}
+          height={300}
+          data={animeRecs}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="Enlish name" />
+          <YAxis allowDecimals="true" dataKey="Score" domain={[8.5,9.20]} />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="English name" fill="#8884d8" />
+          <Bar dataKey="Score" fill="#82ca9d" />
+
+        </BarChart>
+
     </div>
   );
 }
