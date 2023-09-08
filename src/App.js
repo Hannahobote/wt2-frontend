@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 //import { Bar } from "react-chartjs-2";
 //import { Chart as ChartJS } from "chart.js/auto";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, ReferenceLine, Line, LineChart} from 'recharts';
+import MyBarChart from './components/MyBarChart';
 
 function App() {
   const [animeRecs, setAnimeRecs] = useState([])
@@ -41,46 +42,21 @@ function App() {
     <div className="App">
       HELLLLLLO
 
-      <BarChart
-        width={1500}
-        height={300}
+      <MyBarChart
+        width={2500}
+        heigth={300}
         data={animeRecs}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Enlish name" />
-        <YAxis allowDecimals="true" dataKey="Score" domain={[8.5, 9.20]} />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="English name" fill="#8884d8" />
-        <Bar dataKey="Score" fill="#82ca9d" />
-      </BarChart>
-
-      <BarChart
+        YAxisDataKey={"Score"}
+        XAxisDataKey={"English name"}
+      />
+      
+      <MyBarChart 
         width={500}
-        height={300}
+        heigth={300}
         data={newData}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="English name" />
-        <YAxis dataKey="Score" domain={[8.5, 9.5]} />
-        <Tooltip />
-        <Legend />
-        <ReferenceLine y={0} stroke="#000" />
-        <Bar dataKey="English name" fill="#8884d8" />
-        <Bar dataKey="Score" fill="#82ca9d" />
-      </BarChart>
+        YAxisDataKey={"Score"}
+        XAxisDataKey={"English name"}
+      />
 
       <LineChart
         width={1500}
