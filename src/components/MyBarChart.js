@@ -1,7 +1,7 @@
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
-export default function MyBarChart({width, heigth, data, YAxisDataKey, XAxisDataKey}) {
+export default function MyBarChart({width, heigth, data, YAxisDataKey, XAxisDataKey, domain}) {
   return (
     <div>
       <BarChart
@@ -17,11 +17,11 @@ export default function MyBarChart({width, heigth, data, YAxisDataKey, XAxisData
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={XAxisDataKey} />
-        <YAxis allowDecimals="true" dataKey={YAxisDataKey} domain={[7, 10]} />
+        <YAxis allowDecimals="true" dataKey={YAxisDataKey} domain={domain} />
         <Tooltip />
         <Legend />
-        <Bar dataKey={XAxisDataKey} fill="#8884d8" />
-        <Bar dataKey={YAxisDataKey} fill="#82ca9d" />
+        {/*<Bar dataKey={XAxisDataKey} fill="#8884d8" />*/}
+        <Bar dataKey={YAxisDataKey} fill="#82ca9d" barSize={50}  />
       </BarChart>
     </div>
   )

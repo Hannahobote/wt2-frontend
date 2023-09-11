@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-//import { Bar } from "react-chartjs-2";
-//import { Chart as ChartJS } from "chart.js/auto";
 import MyBarChart from './components/MyBarChart';
 import MyLineChart from './components/MyLineChart';
 
@@ -40,24 +38,37 @@ function App() {
   console.log(planToWatchData)
   return (
     <div className="App">
-      HELLLLLLO
-
+      
+      The data is obtained from MyAnimeList.net, which contains over 16000 animes with recommendation from over 320000 users. The graphs below consist of the top 10 highest-scoring animes. There were options to see how much each anime got from people who scored 10 stars, 9 stars, and so on.But for this app, we will only analyze the average total across all of these different scores.
+      <br></br>
+      <br></br>
+      The bar chart represents the top 10 highest-scoring anime. On the y-axis is the score the anime received, and on the x-axis is the name of the anime. 
       <MyBarChart
-        width={2500}
-        heigth={300}
+        width={1000}
+        heigth={500}
         data={animeRecs}
+        domain={[8.5,9.5]}
         YAxisDataKey={"Score"}
         XAxisDataKey={"English name"}
       />
 
+
+      <br></br>
+      <br></br>
+      This chart represents a visual difference between the average score between the 1st rank and 10th rank. According to this analysis, the difference is only 0.19.
       <MyBarChart
         width={500}
         heigth={300}
         data={newData}
         YAxisDataKey={"Score"}
         XAxisDataKey={"English name"}
+        domain={[8.5,9.5]}
       />
 
+
+      <br></br>
+      <br></br>
+      This line chart represents a visual difference between how many people have put this particular anime on their “plan to watch” list. This is sorted in the top 10 anime in descending order (based on their score and not the number of people that have “plan to watch” it).
       <MyLineChart
         width={1500}
         heigth={300}

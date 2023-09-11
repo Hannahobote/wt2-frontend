@@ -1,5 +1,5 @@
 import React from 'react'
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, ReferenceLine, Line, LineChart } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Line, LineChart } from 'recharts';
 
 
 export default function MyLineChart({width, heigth, data, YAxisDataKey, XAxisDataKey}) {
