@@ -11,9 +11,7 @@ function App() {
   useEffect(() => {
     async function data() {
       // Fetch data from backend.
-      await fetch('https://wt2-backend.onrender.com', {
-        credentials: 'include'
-      })
+      await fetch('https://wt2-backend.onrender.com')
         .then(res => res.json())
         .then(animeData => {
           let tempData = []
