@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { XAxis, YAxis, CartesianGrid, Tooltip, Line, LineChart } from 'recharts';
 
-
+/**
+ * Component for a linechart
+ * 
+ * @param {Number} width of line chart
+ * @param {Number} height of line chart
+ * @param {Object} data of what you want to incude in the line chart
+ * @param {String} YAxisDataKey what data you want on the y-axis
+ * @param {string} XAxisDataKey what data you want to show on the x-axis
+ * @returns {Component}
+ */
 export default function MyLineChart({width, heigth, data, YAxisDataKey, XAxisDataKey}) {
   return (
     <div>

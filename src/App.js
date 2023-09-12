@@ -10,12 +10,16 @@ function App() {
 
   useEffect(() => {
     async function data() {
-      await fetch('https://wt2-backend.onrender.com')
+      // Fetch data from backend.
+      await fetch('https://wt2-backend.onrender.com', {
+        credentials: 'include'
+      })
         .then(res => res.json())
         .then(animeData => {
           let tempData = []
           let tempPlanData = []
           animeData.map(anime => {
+            // set relevent data in the arrays.
             tempPlanData.push({ 'English name': Object.values(anime._source)[0], 'Plan to watch': Object.values(anime._source)[1] })
             tempData.push({ 'English name': Object.values(anime._source)[0], 'Score': anime._source.Score })
           })
@@ -34,8 +38,6 @@ function App() {
   if (isLoading) return <p>Loading...</p>
   if (!animeRecs) return <p>No Anime data</p>
 
-  // Make components??
-  console.log(planToWatchData)
   return (
     <div className="App">
       

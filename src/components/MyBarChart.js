@@ -1,6 +1,16 @@
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
+/**
+ * 
+ * @param {Number} width of bar chart
+ * @param {Number} height of bar chart
+ * @param {Object} data of what you want to incude in the line chart
+ * @param {String} YAxisDataKey what data you want on the y-axis
+ * @param {string} XAxisDataKey what data you want to show on the x-axis
+ * @param {domain} domain max and minimun number of the y-axis result
+ * @returns 
+ */
 export default function MyBarChart({width, heigth, data, YAxisDataKey, XAxisDataKey, domain}) {
   return (
     <div>
